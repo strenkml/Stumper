@@ -1,0 +1,22 @@
+{
+  "name": "stumper",
+  "version": "1.0.0",
+  "description": "Logger Library",
+  "main": "dist/logger.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strenkml/stumper.git"
+  },
+  "author": "Matt Strenk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/strenkml/stumper/issues"
+  },
+  "homepage": "https://github.com/strenkml/stumper#readme",
+  "devDependencies": {
+    "typescript": "^5.1.3"
+  }
+}
