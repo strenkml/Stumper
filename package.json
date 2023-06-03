@@ -2,7 +2,8 @@
   "name": "stumper",
   "version": "1.0.0",
   "description": "Logger Library",
-  "main": "dist/logger.js",
+  "main": "dist/Stumper.js",
+  "types": "dist/Stumper.d.ts",
   "scripts": {
     "build": "tsc",
     "lint": "npx eslint . --fix"
@@ -26,5 +27,7 @@
     "eslint-plugin-prettier": "~4.2.1",
     "prettier": "~2.8.8",
     "typescript": "~5.0.0"
-  }
+  },
+  "files": ["dist/**/*"],
+  "keywords": ["Logger"]
 }
