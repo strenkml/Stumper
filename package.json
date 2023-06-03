@@ -28,6 +28,6 @@
     "prettier": "~2.8.8",
     "typescript": "~5.0.0"
   },
-  "files": ["dist/**/*"],
+  "files": ["lib/**/*"],
   "keywords": ["Logger"]
 }
