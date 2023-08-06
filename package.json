@@ -6,14 +6,15 @@
   "types": "lib/Stumper.d.ts",
   "scripts": {
     "build": "tsc",
-    "lint": "npx eslint . --fix"
+    "lint": "npx eslint . --fix",
+    "docs": "npx typedoc src/Stumper.ts"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/strenkml/stumper.git"
   },
   "author": "Matt Strenk",
-  "license": "GPLV3",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/strenkml/stumper/issues"
   },
@@ -26,6 +27,7 @@
     "eslint-config-prettier": "~8.8.0",
     "eslint-plugin-prettier": "~4.2.1",
     "prettier": "~2.8.8",
+    "typedoc": "^0.24.8",
     "typescript": "~5.0.0"
   },
   "files": [
@@ -33,5 +35,8 @@
   ],
   "keywords": [
     "Logger"
-  ]
+  ],
+  "dependencies": {
+    "file-stream-rotator": "^1.0.0"
+  }
 }
