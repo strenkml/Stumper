@@ -5,8 +5,12 @@
   "main": "lib/Stumper.js",
   "types": "lib/Stumper.d.ts",
   "scripts": {
-    "build": "tsc",
-    "lint": "npx eslint . --fix"
+    "build": "npx tsc",
+    "build:clean": "rm -rf dist && npm run build",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "format": "npx prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "prepublishOnly": "npm run build:clean"
   },
   "repository": {
     "type": "git",
