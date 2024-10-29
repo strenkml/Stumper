@@ -64,6 +64,18 @@ export default class Stumper {
     console.error(this.getLogMessage(data, identifier, LOG_TYPE.ERROR));
   }
 
+  public static caughtError(error: any, identifier = ""): void {
+    if (error instanceof Error) {
+      if (error.stack) {
+        console.error(this.getLogMessage(error.stack, identifier, LOG_TYPE.ERROR));
+      } else {
+        console.error(this.getLogMessage(`[${error.name}] ${error.message}`, identifier, LOG_TYPE.ERROR));
+      }
+    } else {
+      console.error(this.getLogMessage(error, identifier, LOG_TYPE.ERROR));
+    }
+  }
+
   public static warning(data: any, identifier = ""): void {
     if (this.logLevel >= LOG_LEVEL.WARNING) {
       console.warn(this.getLogMessage(data, identifier, LOG_TYPE.WARNING));
@@ -88,7 +100,7 @@ export default class Stumper {
     }
   }
 
-  private static getLogMessage(data: any, identifier: string, type: LOG_TYPE): string {
+  protected static getLogMessage(data: any, identifier: string, type: LOG_TYPE): string {
     let convertedData = "";
     let message = "";
 
@@ -117,7 +129,7 @@ export default class Stumper {
     return message;
   }
 
-  private static colorizeMessage(message: string, type: LOG_TYPE): string {
+  protected static colorizeMessage(message: string, type: LOG_TYPE): string {
     let colorCode: string = COLORS.DEFAULT;
     switch (type) {
       case LOG_TYPE.ERROR:
