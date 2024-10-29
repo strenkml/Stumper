@@ -13,6 +13,7 @@ export enum LOG_LEVEL {
 enum LOG_TYPE {
   ERROR = "ERROR",
   WARNING = "WARNING",
+  SUCCESS = "SUCCESS",
   INFO = "INFO",
   DEBUG = "DEBUG",
 }
@@ -29,6 +30,7 @@ const COLORS = {
   RED: "\x1b[31m",
   YELLOW: "\x1b[33m",
   BLUE: "\x1b[34m",
+  GREEN: "\x1b[32m",
 };
 
 export default class Stumper {
@@ -71,6 +73,12 @@ export default class Stumper {
   public static info(data: any, identifier = ""): void {
     if (this.logLevel >= LOG_LEVEL.INFO) {
       console.info(this.getLogMessage(data, identifier, LOG_TYPE.INFO));
+    }
+  }
+
+  public static success(data: any, identifier = ""): void {
+    if (this.logLevel >= LOG_LEVEL.INFO) {
+      console.info(this.getLogMessage(data, identifier, LOG_TYPE.SUCCESS));
     }
   }
 
@@ -121,6 +129,9 @@ export default class Stumper {
       case LOG_TYPE.INFO:
         colorCode = COLORS.BLUE;
         break;
+      case LOG_TYPE.SUCCESS:
+        colorCode = COLORS.GREEN;
+        break;
       case LOG_TYPE.DEBUG:
         colorCode = COLORS.DEFAULT;
         break;
@@ -129,7 +140,7 @@ export default class Stumper {
   }
 }
 
-export class Time {
+class Time {
   public static getFormattedTime(timezone: TIMEZONE): string {
     if (timezone == TIMEZONE.LOCAL) {
       return this.getLocalTime();
