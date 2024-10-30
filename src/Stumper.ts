@@ -76,6 +76,18 @@ export default class Stumper {
     }
   }
 
+  public static caughtWarning(warning: any, identifier = ""): void {
+    if (warning instanceof Error) {
+      if (warning.stack) {
+        console.error(this.getLogMessage(warning.stack, identifier, LOG_TYPE.WARNING));
+      } else {
+        console.error(this.getLogMessage(`[${warning.name}] ${warning.message}`, identifier, LOG_TYPE.WARNING));
+      }
+    } else {
+      console.error(this.getLogMessage(warning, identifier, LOG_TYPE.WARNING));
+    }
+  }
+
   public static warning(data: any, identifier = ""): void {
     if (this.logLevel >= LOG_LEVEL.WARNING) {
       console.warn(this.getLogMessage(data, identifier, LOG_TYPE.WARNING));
