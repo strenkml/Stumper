@@ -11,6 +11,8 @@ export enum LOG_LEVEL {
 }
 
 enum LOG_TYPE {
+  CATASTROPHIC_EXCEPTION = "CATASTROPHIC_EXCEPTION",
+  EXCEPTION = "EXCEPTION",
   ERROR = "ERROR",
   WARNING = "WARNING",
   SUCCESS = "SUCCESS",
@@ -31,6 +33,7 @@ const COLORS = {
   YELLOW: "\x1b[33m",
   BLUE: "\x1b[34m",
   GREEN: "\x1b[32m",
+  PURPLE: "\x1b[35m",
 };
 
 export default class Stumper {
@@ -86,6 +89,14 @@ export default class Stumper {
     } else {
       console.error(this.getLogMessage(warning, identifier, LOG_TYPE.WARNING));
     }
+  }
+
+  public static caughtException(exception: Exception): void {
+    let type = LOG_TYPE.EXCEPTION;
+    if (exception.isCatastrophic) {
+      type = LOG_TYPE.CATASTROPHIC_EXCEPTION;
+    }
+    console.error(this.getLogMessage(exception.message, exception.errorCode.toString(), type));
   }
 
   public static warning(data: any, identifier = ""): void {
@@ -144,7 +155,11 @@ export default class Stumper {
   protected static colorizeMessage(message: string, type: LOG_TYPE): string {
     let colorCode: string = COLORS.DEFAULT;
     switch (type) {
+      case LOG_TYPE.EXCEPTION:
+        colorCode = COLORS.PURPLE;
+        break;
       case LOG_TYPE.ERROR:
+      case LOG_TYPE.CATASTROPHIC_EXCEPTION:
         colorCode = COLORS.RED;
         break;
       case LOG_TYPE.WARNING:
@@ -207,5 +222,17 @@ class Time {
       return `0${number}`;
     }
     return number;
+  }
+}
+
+export abstract class Exception extends Error {
+  public readonly errorCode: number;
+  public readonly isCatastrophic: boolean;
+
+  constructor(message: string, errorCode: number, isCatastrophic: boolean = false) {
+    super(message);
+
+    this.errorCode = errorCode;
+    this.isCatastrophic = isCatastrophic;
   }
 }

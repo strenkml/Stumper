@@ -1,6 +1,6 @@
 {
   "name": "stumper",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Logger Library",
   "main": "lib/Stumper.js",
   "types": "lib/Stumper.d.ts",
