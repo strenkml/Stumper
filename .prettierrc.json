@@ -6,5 +6,5 @@
   "trailingComma": "es5",
   "useTabs": false,
   "arrowParens": "always",
-  "endOfLine": "crlf"
+  "endOfLine": "lf"
 }

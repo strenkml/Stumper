@@ -229,7 +229,7 @@ export abstract class Exception extends Error {
   public readonly errorCode: number;
   public readonly isCatastrophic: boolean;
 
-  constructor(message: string, errorCode: number, isCatastrophic: boolean = false) {
+  constructor(message: string, errorCode: number, isCatastrophic = false) {
     super(message);
 
     this.errorCode = errorCode;
