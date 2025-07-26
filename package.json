@@ -1,16 +1,25 @@
 {
   "name": "stumper",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Logger Library",
-  "main": "lib/Stumper.js",
-  "types": "lib/Stumper.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
   "scripts": {
-    "build": "npx tsc",
-    "build:clean": "rm -rf dist && npm run build",
-    "lint": "npx eslint .",
-    "lint:fix": "npx eslint . --fix",
-    "format": "npx prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "prepublishOnly": "npm run build:clean"
+    "build": "tsup",
+    "build:clean": "rm -rf dist && pnpm build",
+    "lint": "pnpm exec eslint .",
+    "lint:fix": "pnpm exec eslint . --fix",
+    "format": "pnpm exec prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "prepublishOnly": "pnpm run build:clean",
+    "update": "pnpm exec npm-check -u",
+    "depcheck": "pnpm exec npm-check"
   },
   "repository": {
     "type": "git",
@@ -23,19 +32,24 @@
   },
   "homepage": "https://github.com/strenkml/stumper#readme",
   "devDependencies": {
-    "@types/node": "~20.2.5",
-    "@typescript-eslint/eslint-plugin": "~5.59.8",
-    "@typescript-eslint/parser": "~5.59.8",
-    "eslint": "~8.42.0",
-    "eslint-config-prettier": "~8.8.0",
-    "eslint-plugin-prettier": "~4.2.1",
-    "prettier": "~2.8.8",
-    "typescript": "~5.0.0"
+    "@types/node": "~24.1.0",
+    "@typescript-eslint/eslint-plugin": "~8.38.0",
+    "@typescript-eslint/parser": "~8.38.0",
+    "eslint": "~9.32.0",
+    "eslint-config-prettier": "~10.1.8",
+    "eslint-plugin-prettier": "~5.5.3",
+    "npm-check": "^6.0.1",
+    "prettier": "~3.6.2",
+    "tsup": "^8.5.0",
+    "typescript": "~5.8.3"
   },
   "files": [
-    "lib/**/*"
+    "dist"
   ],
   "keywords": [
-    "Logger"
+    "logger",
+    "logging",
+    "tsup",
+    "typescript"
   ]
 }
